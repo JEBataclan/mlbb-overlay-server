@@ -9,7 +9,7 @@ const app = express();
 //.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
 //.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const httpServer = createServer(app);
-const io = new Server(httpServer, { transports: ["polling"] });
+const io = new Server(httpServer, { /* options */ });
 
 //io.set("transports", ["xhr-polling"]); 
 //io.set("polling duration", 10); 
