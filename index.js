@@ -16,12 +16,10 @@ io.on("connection", (socket) => {
             blue: JSON.parse(teamInfos1),
             red: JSON.parse(teamInfos2),
         });
-        /*
         console.log({
             blue: JSON.parse(teamInfos1),
             red: JSON.parse(teamInfos2),
         })
-        */
     });
 
     socket.on("sendCounter", (counter) => {
@@ -37,12 +35,10 @@ io.on("connection", (socket) => {
             blue: JSON.parse(bluePicksAndBans),
             red: JSON.parse(redPicksAndBans),
         });
-        /*
         console.log({
             blue: JSON.parse(bluePicksAndBans),
             red: JSON.parse(redPicksAndBans),
         })
-        */
     });
 });
 
