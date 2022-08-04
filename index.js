@@ -3,11 +3,11 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 const PORT = process.env.PORT || 5000;
-const INDEX = '/index.html';
+//const INDEX = '/index.html';
 
-const app = express()
-    .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-    .listen(PORT, () => console.log(`Listening on ${PORT}`));
+const app = express();
+//.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+//.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 
@@ -47,5 +47,9 @@ io.on("connection", (socket) => {
     });
 });
 
-httpServer.listen(5000);
-console.log("listening on port ", 5000);
+var staticPath = path.resolve(__dirname, "");
+app.use(express.static(staticPath));
+
+httpServer.listen(PORT, function () {
+    console.log("Server is listening at port " + PORT);
+})
