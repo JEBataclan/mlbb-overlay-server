@@ -15,9 +15,7 @@ const io = new Server(httpServer, { /* options */ });
 //io.set("polling duration", 10); 
 
 io.on("connection", (socket) => {
-    socket.on('connect', () => { 
-        console.log(`Socket with ID: ${socket.id} has connection.`);
-     });
+    console.log(`Socket with ID: ${socket.id} has connected.`);
 
     socket.on("sendPhaseAndCounter", ({ counter, phase }) => {
         io.sockets.emit("receivePhaseAndCounter", { counter, phase });
