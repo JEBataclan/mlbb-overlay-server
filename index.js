@@ -20,14 +20,15 @@ io.on("connection", (socket) => {
     });
 
     socket.on("sendTeamInfos", (teamInfos1, teamInfos2) => {
-        io.sockets.emit("receiveTeamInfos", {
-            blue: JSON.parse(teamInfos1),
-            red: JSON.parse(teamInfos2),
-        });
         console.log({
             blue: JSON.parse(teamInfos1),
             red: JSON.parse(teamInfos2),
         })
+        
+        io.sockets.emit("receiveTeamInfos", {
+            blue: JSON.parse(teamInfos1),
+            red: JSON.parse(teamInfos2),
+        });
     });
 
     socket.on("sendCounter", (counter) => {
@@ -39,14 +40,15 @@ io.on("connection", (socket) => {
     });
 
     socket.on("sendPicksAndBans", (bluePicksAndBans, redPicksAndBans) => {
-        io.sockets.emit("receivePicksAndBans", {
-            blue: JSON.parse(bluePicksAndBans),
-            red: JSON.parse(redPicksAndBans),
-        });
         console.log({
             blue: JSON.parse(bluePicksAndBans),
             red: JSON.parse(redPicksAndBans),
         })
+
+        io.sockets.emit("receivePicksAndBans", {
+            blue: JSON.parse(bluePicksAndBans),
+            red: JSON.parse(redPicksAndBans),
+        });
     });
 });
 
