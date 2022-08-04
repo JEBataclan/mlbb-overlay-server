@@ -2,7 +2,12 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-const app = express();
+const PORT = process.env.PORT || 5000;
+const INDEX = '/index.html';
+
+const app = express()
+    .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`));
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 
