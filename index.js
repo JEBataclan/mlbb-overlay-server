@@ -12,6 +12,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 
 io.set("transports", ["xhr-polling"]); 
+io.set("polling duration", 10); 
 
 io.on("connection", (socket) => {
     socket.on("sendPhaseAndCounter", ({ counter, phase }) => {
