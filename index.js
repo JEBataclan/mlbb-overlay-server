@@ -15,6 +15,8 @@ const io = new Server(httpServer, { /* options */ });
 //io.set("polling duration", 10); 
 
 io.on("connection", (socket) => {
+    console.log(socket.id);
+    
     socket.on("sendPhaseAndCounter", ({ counter, phase }) => {
         io.sockets.emit("receivePhaseAndCounter", { counter, phase });
     });
