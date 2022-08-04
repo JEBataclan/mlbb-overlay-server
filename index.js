@@ -47,9 +47,6 @@ io.on("connection", (socket) => {
     });
 });
 
-var staticPath = path.resolve(__dirname, "");
-app.use(express.static(staticPath));
-
 httpServer.listen(PORT, function () {
     console.log("Server is listening at port " + PORT);
 })
