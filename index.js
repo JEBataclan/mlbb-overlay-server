@@ -17,27 +17,46 @@ const io = new Server(httpServer, { /* options */ });
 io.on("connection", (socket) => {
     console.log(`Socket with ID: ${socket.id} has connected.`);
 
+    socket.on("join-room", (room) => {
+        socket.join(room);
+        console.log(`Socket with ID: ${socket.id} has joined room ${room}.`)
+    })
+
     socket.on("sendPhaseAndCounter", ({ counter, phase }) => {
         io.sockets.emit("receivePhaseAndCounter", { counter, phase });
     });
 
-    socket.on("sendTeamInfos", (teamInfos1, teamInfos2) => {
-        io.sockets.emit("receiveTeamInfos", {
+    socket.on("sendTeamInfos", (room, teamInfos1, teamInfos2) => {
+        //io.sockets.emit("receiveTeamInfos", {
+        //    blue: JSON.parse(teamInfos1),
+        //    red: JSON.parse(teamInfos2),
+        //});
+
+        socket.broadcast.to(room).emit("receiveTeamInfos", {
             blue: JSON.parse(teamInfos1),
             red: JSON.parse(teamInfos2),
         });
     });
 
-    socket.on("sendCounter", (counter) => {
-        io.sockets.emit("receiveCounter", counter);
+    socket.on("sendCounter", (room, counter) => {
+        //io.sockets.emit("receiveCounter", counter);
+
+        socket.broadcast.to(room).emit("receiveCounter", counter);
     });
 
-    socket.on("sendMatchInfo", (matchInfo) => {
-        io.sockets.emit("receiveMatchInfo", matchInfo);
+    socket.on("sendMatchInfo", (room, matchInfo) => {
+       //io.sockets.emit("receiveMatchInfo", matchInfo);
+
+       socket.broadcast.to(room).emit("receiveMatchInfo", matchInfo);
     });
 
-    socket.on("sendPicksAndBans", (bluePicksAndBans, redPicksAndBans) => {
-        io.sockets.emit("receivePicksAndBans", {
+    socket.on("sendPicksAndBans", (room, bluePicksAndBans, redPicksAndBans) => {
+        //io.sockets.emit("receivePicksAndBans", {
+        //    blue: JSON.parse(bluePicksAndBans),
+        //    red: JSON.parse(redPicksAndBans),
+        //});
+        
+        socket.broadcast.to(room).emit("receivePicksAndBans", {
             blue: JSON.parse(bluePicksAndBans),
             red: JSON.parse(redPicksAndBans),
         });
